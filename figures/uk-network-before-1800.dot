@@ -1,0 +1,13 @@
+digraph transition {
+ node[shape="rectangle"];
+ edge[arrowhead="vee", arrowsize=0.8, weight=0.1]; 
+  labelloc="t"; 
+ label="PhD Network before 1800 in the UK and Ireland (with threshold .00)"; 
+   "University Of Cambridge" -> "University Of Cambridge" [penwidth = "1.4"];
+   "University Of St. Andrews" -> "Universiteit Leiden" [penwidth = ".4"];
+   "Universiteit Leiden" -> "University Of Edinburgh" [penwidth = ".2"];
+   "University Of Aberdeen" -> "University Of Oxford" [penwidth = ".2"];
+   "University Of Edinburgh" -> "University Of Edinburgh" [penwidth = ".6"];
+   "University Of Cambridge" -> "Ruprecht-Karls-Universität Heidelberg" [penwidth = ".2"];
+   "University Of Cambridge" -> "Universiteit Franeker" [penwidth = ".2"];
+ }

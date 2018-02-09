@@ -1,0 +1,125 @@
+# Flow of Math PhD's (Part 3)
+
+I have been looking at flow of PhD's ([here][1] and [here][2]) last
+two days.  The resulting graphs are highly connected, and therefore,
+difficult to read. In order to perform more flexible analyses and to
+simplify the workflow, I created another [dataset][4] which is easier
+to process, and I simplified the [code][3] that generates these
+graphs.
+
+[1]: flow-of-math-phds-1.html 
+[2]: flow-of-math-phds-2.html
+[3]: flow-of-phds-3-code.txt
+[4]: all-named-edges.csv.bz2
+
+The dataset now consists of person id, advisor's school (name, country and
+id) and recipient's school (name, country and id) and year of the degree.
+The code I wrote is bare bones. Depending on what you want, first you need
+to filter the data and then pipe it to the program.  The command line parameters
+are
+
+1. The first item is either 0 for school based graphs or 1 for country based
+graphs.
+
+2. The threshold is a number. Since the graphs are highly connected, depending
+on the number of PhD's granted between vertices, I put a weight (explained below.)  
+If the weight is below this threshold, it is not displayed on the final graph.
+
+3. The title of the graph for information purposed delimited with quotation
+marks.
+
+The weight function: first all PhD's are counted for the filtered dataset.  Then 
+these numbers are normalized between 0 and 1.  Then I apply the following function: 
+$w(x) = \log(1+x)$ to the result up to a suitable scalar multiple and a cut off 
+function.
+
+## Country Based Graphs
+
+Let us start looking at the graphs again:
+
+### [Math PhD Landscape Before 1800](flow-of-phds-3-before-1800.png)
+
+France, The Netherlands and Germany (then Prussia) dominated the Math PhD's.
+
+### [Math PhD Landscape Between 1800 and 1910](flow-of-phds-3-1800-1910.png)
+
+The network has expanded, but the connections are not as strong as
+before.  Germany still dominates, and we have new players appearing on
+the scene such as Russia and Ukraine.  Also notice that both US and UK
+are importers of PhD degrees, and Germany is the main exporter.  But
+this might be an inherent bias of the dataset. Afterall, Math
+Genealogy Project is based in the US.
+
+
+### [Math PhD Landscape Between 1910 and 1940](flow-of-phds-3-1910-1940.png)
+
+The number of PhD's among Germany, The Netherlands, Austria and
+Switzerland expands.  Russia starts exporting degrees to US.  Also,
+notice the relationship between Germany and Spain, but we see no
+discernible relations between Germany and Italy in betwen two World
+Wars.
+
+### [Math PhD Landscape Between 1940 and 1985](flow-of-phds-3-1940-1985.png)
+
+Wow! Almost all PhD's between 1940's and 1980's are given in the US.
+The US looks like this large sink that swallows all the math PhD's.
+Also, notice that Russia's influence expands.  India now is visible,
+but not China. See [what
+happens](flow-of-phds-3-1940-1985-us-removed.png) when we remove the
+US from the network.
+
+### [Math PhD Landscape Between 1985 and 2005](flow-of-phds-3-1985-2005.png)
+
+The US becomes the primary exporter of Math PhD's. China shows up for
+the first time. And [see what
+happens](flow-of-phds-3-1985-2005-us-removed.png) if we remove the US
+from the network.  In the original graph, it looked as if the number
+of Math PhD's Russia produced diminished, but this is not the case.
+The relative number of US PhD's is so large that Russian network was
+invisible.
+
+### [Math PhD Landscape After 2005](flow-of-phds-3-after-2005.png)
+
+The US now dominating the scene. China appears on the horizon, and
+when [we removed](flow-of-phds-3-after-2005-us-germany-removed.png) we see the
+other networks more clearly, such as the networks around Russia, and
+the UK, France and Spain.
+
+## School Based Graphs
+
+I will be looking at the specific network around the US, the UK and Canada.  
+
+### [Anglo-American Network Between 1800-1910](flow-of-phds-3-anglo-1800-1910.png)
+
+The Math PhD Network of the US is very small and largely depends on
+the UK and Germany.
+
+### [Anglo-American Network Between 1910-1940](flow-of-phds-3-anglo-1910-1940.png)
+
+The network starts taking shape. The major hubs form: Chicago,
+Harvard, Urbana-Champaign, Johns Hopkins and Princeton.
+
+### [Anglo-American Network Between 1940-1985](flow-of-phds-3-anglo-1940-1985.png)
+
+US becomes the major importer of PhD degrees in math after the 2nd
+World War. The major hubs form a tight network with some interesting
+subnetworks on the periphery: Texas Austin and small cluster of
+Southern Universities (not visible on this scale), New York University
+and its small network, Cambridge and its cross-continental subnetwork.
+
+### [Anglo-American Network Between 1985-2005](flow-of-phds-3-anglo-1985-2005.png)
+
+I don't know what it is but the PhD network became even more connected
+than previous decades. Increasing and decreasing the threshold does
+not much change the structure of the graph.  It is a highly connected
+graph with plenty of connections between the major hubs and the rest
+of the universities.
+
+
+### [Anglo-American Network After 2005](flow-of-phds-3-anglo-after-2005.png)
+
+The graph didn't change much from the previous era.  If we look at the
+graph after the major hubs (Berkeley, Stanford, Princeton, Harvard and
+MIT) are [removed](flow-of-phds-3-anglo-after-2005-removed.png), we
+see the secondary networks more clearly. See the UK network, UIUC,
+Columbia, Washington, and Purdue for example.
